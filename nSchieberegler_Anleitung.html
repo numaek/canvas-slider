@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+ <body style="background-color: #EFEFEF;">
+
+ <span style="font-weight: bold; text-decoration: underline;">numaek nSchieberegler 1.1 - Beispiele</span><br>
+ Hinweis: <span style="font-style: italic;">Aktiviere bitte die Entwickler-Konsole mit F12. Dort werden die Meldungen und Werte ausgegeben.</span><br><br><br>
+
+ <table border="0">
+	<tr>
+		<td style="text-align: center;"><canvas id="nSr1" width="60" height="200" style="border: 1px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Standardregler<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nSr3" width="60" height="200" style="border: 1px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- 0-Stellung in der Mitte<br>
+			- Skala dicker werdend<br>
+			- Strich in Regenbogen<br>
+			- Knopf in Silber-Verlauf<br>
+		</td>
+		<td style="text-align: center;"> <canvas id="nSr5" width="60" height="200" style="border: 1px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Stufenregler<br>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nSr1_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nSr1_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nSr3_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nSr3_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nSr5_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nSr5_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(1);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(1);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(3);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(3);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(5);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(5);">
+		</td>
+	</tr>
+
+	<tr><td colspan="10">&nbsp;<br><br></td></tr>
+
+	<tr>
+		<td style="text-align: center;"><canvas id="nSr2" width="200" height="60" style="border: 1px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Skala dicker werdend<br>
+			- Strich in Regenbogen<br>
+			- Wert exponentiell progressiv<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nSr4" width="200" height="60" style="border: 1px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- 0-Stellung in der Mitte<br>
+			- Knopf in Silber-Verlauf<br>
+		</td>
+		<td style="text-align: center;"><canvas id="nSr6" width="200" height="60" style="border: 1px solid #808080;"></canvas></td>
+		<td rowspan="3" style="width: 200px; vertical-align: top; top; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			- Stufenregler quer<br>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nSr2_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nSr2_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nSr4_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nSr4_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080;">
+			<input type="text" id="nSr6_Stellung" title="Stellung" value="" style="width: 50px; text-align: right; cursor: Help;">
+			<input type="text" id="nSr6_Prozente" title="Prozente" value="" style="width: 50px; text-align: right; cursor: Help;">
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(2);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(2);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(4);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(4);">
+		</td>
+		<td style="text-align: center; border-right: 1px solid #808080; border-bottom: 1px solid #808080;">
+			<input type="button" value="Reset" style="width: 50px;" onclick="Regler_reset(6);">
+			<input type="button" value="LOG"   style="width: 50px;" onclick="Regler_log(6);">
+		</td>
+	</tr>
+ </table>
+
+ <br><br>
+
+
+ <script type="text/javascript" src="nSchieberegler.js"></script>
+
+ <script language="javascript">
+
+	var Regler = [];
+
+	function start()
+	{
+		// Regler konfigurieren und laden
+		// ==============================
+
+		Regler['nSr1'] = new Schieberegler('nSr1');
+		Regler['nSr1'].configSet('start',   25);
+		Regler['nSr1'].init();
+
+		Regler['nSr2'] = new Schieberegler('nSr2');
+		Regler['nSr2'].configSet('quer',           1);
+		Regler['nSr2'].configSet('start',          25);
+		Regler['nSr2'].configSet('wert_verlauf',   1);
+		Regler['nSr2'].configSet('skala_breiter',  1);
+		Regler['nSr2'].configSet('str_farbe',     'rainbow');
+		Regler['nSr2'].init();
+
+		Regler['nSr3'] = new Schieberegler('nSr3');
+		Regler['nSr3'].configSet('start',          15);
+		Regler['nSr3'].configSet('str_laenge',     125);
+		Regler['nSr3'].configSet('mitte',          1);
+		Regler['nSr3'].configSet('Knopf_rund',     0);
+		Regler['nSr3'].configSet('Knopf_silber',   1);
+		Regler['nSr3'].configSet('Knopf_laenge',   44);
+		Regler['nSr3'].configSet('Knopf_breite',   24);
+		Regler['nSr3'].configSet('Knopf_aktiv',   '#FF0000');
+		Regler['nSr3'].configSet('farbe_hinter',  '#808080');
+		Regler['nSr3'].configSet('str_farbe',     'rainbow');
+		Regler['nSr3'].configSet('skala_breiter',  1);
+		Regler['nSr3'].init();
+
+		Regler['nSr4'] = new Schieberegler('nSr4');
+		Regler['nSr4'].configSet('start',          75);
+		Regler['nSr4'].configSet('str_laenge',     125);
+		Regler['nSr4'].configSet('quer',           1);
+		Regler['nSr4'].configSet('mitte',          1);
+		Regler['nSr4'].configSet('Knopf_rund',     0);
+		Regler['nSr4'].configSet('Knopf_silber',   1);
+		Regler['nSr4'].configSet('Knopf_laenge',   44);
+		Regler['nSr4'].configSet('Knopf_breite',   24);
+		Regler['nSr4'].configSet('Knopf_aktiv',   '#FF0000');
+		Regler['nSr4'].configSet('farbe_hinter',  '#808080');
+		Regler['nSr4'].init();
+
+		Regler['nSr5'] = new Schieberegler('nSr5');
+		Regler['nSr5'].configSet('start',          25);
+		Regler['nSr5'].configSet('str_laenge',     175);
+		Regler['nSr5'].configSet('Knopf_rund',     0);
+		Regler['nSr5'].configSet('stufen',         0);
+		Regler['nSr5'].configSet('stufen',         20);
+		Regler['nSr5'].configSet('stufen',         50);
+		Regler['nSr5'].configSet('stufen',         70);
+		Regler['nSr5'].configSet('stufen',         100);
+		Regler['nSr5'].init();
+
+		Regler['nSr6'] = new Schieberegler('nSr6');
+		Regler['nSr6'].configSet('start',          25);
+		Regler['nSr6'].configSet('str_laenge',     175);
+		Regler['nSr6'].configSet('Knopf_rund',     0);
+		Regler['nSr6'].configSet('quer',           1);
+		Regler['nSr6'].configSet('stufen',         0);
+		Regler['nSr6'].configSet('stufen',         20);
+		Regler['nSr6'].configSet('stufen',         50);
+		Regler['nSr6'].configSet('stufen',         70);
+		Regler['nSr6'].configSet('stufen',         100);
+		Regler['nSr6'].init();
+
+		// console.log( Regler );
+	}
+
+	function Schieberegler_Function(data)
+	{
+		// Funkton wird nach "set()" zur weiteren Verwarbeitung aufgerufen
+		// ===============================================================
+
+		// console.log( 'Regler "'+data.ID+'" mit ' + data.prozente + '%.' );
+
+		// Wertefelder beschreiben
+		feldStellung = data.ID + '_Stellung';
+		feldProzente = data.ID + '_Prozente';
+
+		document.getElementById(feldStellung).value = data.stellung + '%';
+		document.getElementById(feldProzente).value = data.prozente + '%';
+	}
+
+	function Regler_reset(nr)
+	{
+		indexName = 'nSr' + nr;
+		Regler[indexName].reset();
+	}
+
+	var logConsole = 0;
+	function Regler_log(nr)
+	{
+		if( logConsole == 0 )
+		{
+			alert('Aktiviere bitte die Entwickler-Konsole mit F12.\nDort werden die Meldungen und Werte ausgegeben.');
+			logConsole = 1;
+		}
+
+		indexName = 'nSr' + nr;
+		Regler[indexName].log();
+	}
+
+	document.onload = start();
+
+ </script>
+
+
+ </body>
+</html>
